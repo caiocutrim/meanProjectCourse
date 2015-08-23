@@ -2,7 +2,7 @@
   "name": "rschool",
   "version": "0.0.0",
   "description": "\"A real time webschool with socket.io and meanstack\"",
-	"private": true,
+  "private": true,
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,10 +16,10 @@
     "socket.io\""
   ],
   "author": {
-		"name":"Caio Cutrim",
-		"email":"kaiocoutrim@gmail.com",
-		"url":"http://facebook.com/caio.cutrim.3"
-	},
+    "name": "Caio Cutrim",
+    "email": "kaiocoutrim@gmail.com",
+    "url": "http://facebook.com/caio.cutrim.3"
+  },
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.13.3",
@@ -29,7 +29,8 @@
     "express-session": "^1.11.3",
     "helmet": "^0.10.0",
     "method-override": "^2.3.5",
+    "mongoose": "^4.1.3",
     "socket.io": "^1.3.6"
   },
-	"repository": "http://bitbucket.org/caio1989/rschool"
+  "repository": "http://bitbucket.org/caio1989/rschool"
 }
