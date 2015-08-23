@@ -1,0 +1,30 @@
+{
+  "name": "rSchool",
+  "version": "0.0.0",
+  "authors": [
+    "Caio Cutrim <kaiocoutrim@gmail.com>"
+  ],
+  "description": "\"Real time class enviroment with node.js and angular on front-end\"",
+  "keywords": [
+    "\"real",
+    "time",
+    "angular",
+    "node.js",
+    "socket.io\""
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.4",
+    "angular-resource": "~1.4.4",
+    "angular-route": "~1.4.4",
+    "font-awesome": "fontawesome#~4.4.0",
+    "foundation": "~5.5.2"
+  }
+}
