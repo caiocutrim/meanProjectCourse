@@ -1,6 +1,11 @@
+.btn:focus
+{
+    outline: 0; !important
+}
 .btn
 {
     border-radius: 35px;
+    outline: 0; !important
 }
 .btn-danger
 {
@@ -97,7 +102,7 @@
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus
     {
-        color: #ffffff;
+        color: #fff;
         background-color: #16a085;
     }
 }
