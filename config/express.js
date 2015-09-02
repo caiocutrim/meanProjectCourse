@@ -7,12 +7,12 @@ var express = require("express")
 ;
 
 module.exports = function(){
-	var app = express();
+  var app = express();
 	app.set("port", 3000);
   
 
-  //setup middlewares
-	app.use(express.static("public/"));
+  //using the express middlewares
+	app.use(express.static("./public"));
 	app.use(bodyParser.urlencoded({extended:true}));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
@@ -20,7 +20,7 @@ module.exports = function(){
 	load("models",{cwd:"app"})
 	.then("controllers")
 	.then("routes")
-	.into(app)
+	.into(app);
 
 	return app;
 };
