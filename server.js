@@ -1,11 +1,11 @@
-var app = require("./config/express")(app);
+var app = require("./config/express")();
+var dbConfig = require("./config/database");
+var http = require("http");
+var server = http.createServer(app);
+var port = app.get("port");
 
-
-app.get("/home", function(req,res){
-	res.json({"msg": "Hello world! from api"});
+server.listen(port, function(){
+  console.log("** \t The server express is run on address http://localhost:"+port+" \t **");
 });
 
-
-app.listen(app.get("port"), function(){
-	console.log("* listening on:"+app.get("port"));
-});
+dbConfig("mongodb://localhost/rschool-dev");
