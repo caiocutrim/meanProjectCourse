@@ -22,9 +22,10 @@
   ],
   "dependencies": {
     "angular": "~1.4.4",
+    "angular-bootstrap": "~0.13.3",
     "angular-resource": "~1.4.4",
     "angular-route": "~1.4.4",
-    "font-awesome": "fontawesome#~4.4.0",
-    "foundation": "~5.5.2"
+    "bootstrap": "~3.3.5",
+    "font-awesome": "fontawesome#~4.4.0"
   }
 }
