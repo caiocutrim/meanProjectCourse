@@ -35,7 +35,7 @@ The rschool web app is a web application build on top of node.js and socket.io t
 	│   │   └── style.css 
 	│   ├── index.html 
 	│   ├── index.js 
-	│   ├── js 
+	│   ├── src
 	│   │   ├── controllers 
 	│   │   │   └── homectrl.js 
 	│   │   ├── routes 
