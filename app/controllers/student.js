@@ -57,6 +57,7 @@ module.exports = function(app){
 	};
 
 	controller.removeStudent = function(req, res){
+		var _id = req.params.id;
 		Student.remove({"_id": _id}).exec()
 		  .then(
 				function(data){
