@@ -1,5 +1,5 @@
 angular.module("rschool")
-.controller("userCtrl",  function($window, $scope, $location, $routeParams, User, $resource){
+.controller("userController",  function($window, $scope, $location, $routeParams, User, $resource){
 	var LoginUser = $resource("/login");
 
   $scope.userLogin = new LoginUser();
