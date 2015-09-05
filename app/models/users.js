@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 var uniqueValidator = require("mongoose-unique-validator");
-var findOrCreate = require("mongoose-findorcreate");
 var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(){

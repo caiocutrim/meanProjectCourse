@@ -1,8 +1,6 @@
 var express = require("express")
 	, methodOverride = require("method-override")
 	, bodyParser = require("body-parser")
-	, cookieParser = require("cookie-parser")
-	, session = require("express-session")
 	, load = require("express-load")
 ;
 
