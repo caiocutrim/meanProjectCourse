@@ -1,1 +1,1 @@
-angular.module("rschool", ["ngResource", "ngRoute", "ui.bootstrap"]);
+angular.module("rschool", ["ngResource","ngStorage", "ngRoute", "ui.bootstrap"]);
