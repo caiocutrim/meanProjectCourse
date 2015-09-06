@@ -17,6 +17,7 @@ module.exports = function(app){
 			.then(function(data){
 				res.json(data);
 			}, function(err){
+				console.log(err);
 				res.status(500).json(err);
 			});
 		}
@@ -35,7 +36,7 @@ module.exports = function(app){
 
 	controller.findAllUsers = function(req, res){
 		User.find().exec()
-		then(function(data){
+		.then(function(data){
 			res.json(data);
 		}, function(err){
 			res.status(500).json(err);
