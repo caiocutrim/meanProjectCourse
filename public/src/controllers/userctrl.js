@@ -1,59 +1,54 @@
 angular.module("rschool")
-.controller("userController",  function($window, $scope, $location, $routeParams, User, $resource){
-	var LoginUser = $resource("/login");
-
-  $scope.userLogin = new LoginUser();
-	
-	if($routeParams.userId){
-		User.get({id: $routeParams.userId}
-		, function(data){
-	      console.log(data);
-	      $scope.user = data;
-		}
-	  , function(err){
-	      $scope.message = {
-					text: "Não foi possível obter os dados do usuário"
-				}
-		});
-	}
-	else{
-		//to use on the saveUser
-		$scope.user = new User();
-	}
+.controller("userCtrl",  function(UserStorage, $localStorage, $location, $scope, $window){
 
 	$scope.loginUser = function(){
-		$scope.userLogin.$save()
-		.then(function(data){
-			var token = data.token;
-			var base64Url = token.split('.')[1];
-			var base64 = base64Url.replace("-", "+").replace("_", "/");
-			var dataFormated = JSON.parse($window.atob(base64));
-			console.log(dataFormated);
-		})
-		.catch(function(err){
-			console.log(err);
-			$scope.message = {
-				text: "Ocorreu um erro, desculpe..."
-			};
-		});
-
-	}
-
-	$scope.saveUser = function(){
-		$scope.user.$save()
-		.then(function(){
-			$scope.message = {
-				text: "Feito agora você pode entrar no nosso sistema!"
-			};
-			// to clear all inputs text-fields
-			$scope.user = new User();
-		})
-		.catch(function(err){
-			console.log(err);
-			$scope.message = {
-				text: "Ocorreu um erro, desculpe..."
-			};
+		var data = $scope.userLogin;
+    UserStorage.save(data, "/login"
+			, function(res){
+		    if(res.type == false){
+					console.log(res);
+					res.token;
+				}else {
+					console.log(res)
+					$localStorage.token = res.token;
+					$window.location = "/";
+				}
+			 
+	   }, function(res){
+          $scope.message = {
+						type: "alert-danger",
+						text: res.statusText,
+						status: res.status
+					}
 		});
 	};
-});
+	$scope.signOut = function(){
+		UserStorage.signOut(function(){
+			$window.location = "#/logout";
+			console.log("deslogou");
+		}, function(){
+			alert("Falha no engano!");
+		});
+	}
+	$scope.saveUser = function(){
+		var data = $scope.user;
+		UserStorage.save(data, "/users"
+			, function(res){
+					console.log(res);
+					$scope.message = {
+						type: "alert-success",
+						status: res.status,
+						text: status.text
+					};
+		 }, function(res){
+					console.log(res);
+					$scope.message = {
+						type: "alert-danger",
+						status: res.status,
+						text: res.statusText
+					};
+		});
+	};
 
+	$scope.token = $localStorage.token;
+});
