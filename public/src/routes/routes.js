@@ -1,24 +1,6 @@
 angular.module("rschool").config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider){
 
-  $httpProvider.interceptors.push(function($q, $location, $localStorage){
-			return {
-			"request": function(config){
-				config.headers = config.headers || {};
-				if($localStorage.token){
-					config.headers.Authorization = "Portador " + $localStorage.token;
-				}
-
-				return config
-			},
-			"responseError": function(response){
-				if(response.status === 401 || response.status === 403){
-					 $location.path("/login");
-				}
-
-				return $q.reject(response);
-			}
-		};
-	});
+  $httpProvider.interceptors.push("UserInterceptor");
 
 	$routeProvider
 	.when("/",{
@@ -40,6 +22,10 @@ angular.module("rschool").config(["$routeProvider", "$httpProvider", function($r
 	.when("/logout", {
 		controller: "userCtrl",
 		templateUrl: "../../views/login.html"
+	})
+	.when("/class", {
+		controller: "classCtrl",
+		templateUrl: "../../views/class-create.html"
 	})
 	.when("/user-create", {
     controller: "userCtrl",
