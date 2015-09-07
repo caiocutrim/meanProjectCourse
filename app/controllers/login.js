@@ -1,3 +1,4 @@
+"use strict";
 var jwt = require("jwt-simple");
 var moment = require("moment");
 var secret = "I'm a rockstar, baby! and you don't will discover this";
@@ -16,12 +17,12 @@ module.exports = function(app){
 			}
 			else{
 				if(err){
-					return res.json(404).json(err);
+					return res.json(401).json(err);
 				}				
 				user.verifyPassword(password, function(isMatch){
 					if(!isMatch){
 						console.log("Attempt failed to login with "+ user.username);
-						return res.status(401).json("Wrong password!");
+						return res.status(401).json();
 					}
 					var expires = moment().add(7, "days").valueOf();
 					var token = jwt.encode({
