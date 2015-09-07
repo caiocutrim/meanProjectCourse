@@ -1,13 +1,28 @@
+"use strict";
+var sanitize = require("mongo-sanitize");
 module.exports = function(app){
 
   var controller = {};
 	var Student = app.models.student;
 
+	
+
 	controller.saveStudent = function(req, res){
+		console.log(req.body);
+		var datas = {
+			"name": req.body.name,
+			"surname": req.body.surname,
+			"address":  {
+				"street": req.body.address.street,
+				"district": req.body.address.district,
+				"city": req.body.address.city,
+				"state": req.body.address.state,
+				"telephone": req.body.address.telephone
+			}
+		}
 		var _id = req.body._id;
-		console.log(_id);
 		if(_id){
-			Student.findByIdAndUpdate(_id, req.body).exec()
+			Student.findByIdAndUpdate(_id, datas).exec()
 			.then(
 				function(data){
 				  res.json(data);
@@ -18,7 +33,7 @@ module.exports = function(app){
 			});
 		}
     else{
-		  Student.create(req.body)
+		  Student.create(datas)
        .then(
 			   function(data){
 			     res.status(201).json(data);
@@ -57,7 +72,9 @@ module.exports = function(app){
 	};
 
 	controller.removeStudent = function(req, res){
-		var _id = req.params.id;
+		//sanitize is used to avoid the query selector injection
+		//like {$ne: null} that make the delete of the all dates of the student collection 
+		var _id = sanitize(req.params.id);
 		Student.remove({"_id": _id}).exec()
 		  .then(
 				function(data){
