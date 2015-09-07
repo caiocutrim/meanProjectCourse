@@ -1,3 +1,4 @@
+"use strict";
 module.exports = function(app){
 	var userController = app.controllers.user;
 	var loginController = app.controllers.login;
