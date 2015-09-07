@@ -2,8 +2,23 @@ angular.module("rschool")
 .factory("Student",["$resource", function($resource){
 	return $resource("/students/:id");
 }])
-.factory("Interceptor", function($location, $q, $localStorage){
-	return })
+.factory("UserInterceptor", function($location, $q, $localStorage){
+	return {
+	"request": function(config){
+		config.headers = config.headers || {};
+		 if($localStorage.token){
+				config.headers.authorization = $localStorage.token;
+		 }
+		 return config
+		},
+	"responseError": function(response){
+		 if(response.status === 401 || response.status === 403){
+				$location.path("/login");
+		 }
+		 return $q.reject(response);
+		}
+	};
+})
 .factory("User",["$resource", function($resource){
 	return $resource("/users/:id");
 }])
