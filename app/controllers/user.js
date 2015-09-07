@@ -1,10 +1,16 @@
+var sanitize = require("mongo-sanitize");
 module.exports = function(app){
 	var User = app.models.users
 	  , controller  = {};
 
 	controller.saveUser = function(req,res){
+		var data ={
+			"username": req.body.username,
+			"name": req.body.name,
+			"password": req.body.password
+		};
 		if(req.body._id){
-			User.findByIdAndUpdate(req.body._id, req.body).exec()
+			User.findByIdAndUpdate(req.body._id, data).exec()
 			.then(function(data){
 				res.status(201).json(data);
 			}, function(err){
@@ -13,7 +19,7 @@ module.exports = function(app){
 
 		}
 		else{
-			User.create(req.body)
+			User.create(data)
 			.then(function(data){
 				res.json(data);
 			}, function(err){
@@ -44,7 +50,7 @@ module.exports = function(app){
 	};
 
 	controller.removeUser = function(req, res){
-		User.remove({"_id":req.body._id}).exec()
+		User.remove(sanitize({"_id":req.body._id})).exec()
 		.then(function(){
 			 res.end();
 		}, function(err){
