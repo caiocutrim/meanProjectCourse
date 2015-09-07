@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
 	</head>
 	<body>
-		<div ng-include="'components/nav-menu.html'"></div>
+		<navbar-top></navbar-top>
 		<ng-view></ng-view>
 		<!-- ./vendor -->
 		<script src="libs/angular/angular.js"></script>
@@ -18,10 +18,12 @@
 		<script src="libs/angular-resource/angular-resource.js"></script>
 		<script src="libs/ngstorage/ngStorage.js"></script>
 		<!-- own scripts -->
+		<script src="components-js/components.js"></script>
 		<script src="index.js"></script>
 		<script src="src/services/services.js"></script>
 		<script src="src/controllers/studentctrl.js"></script>
 		<script src="src/controllers/userctrl.js"></script>
+		<script src="src/controllers/classctrl.js"></script>
 		<script src="src/routes/routes.js"></script>
 		<!-- ./own scripts -->
 	</body>
