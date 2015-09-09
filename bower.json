@@ -28,5 +28,8 @@
     "bootstrap": "~3.3.5",
     "font-awesome": "fontawesome#~4.4.0",
     "ngstorage": "~0.3.9"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.5"
   }
 }

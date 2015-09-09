@@ -1,49 +1,38 @@
-var grunt = require("grunt");
-
 module.exports = function(grunt){
-
 	grunt.initConfig({
-		copy: {
+		copy:{
 			project:{
-				expand: true, //to active the dynamic mapping of the file
-				cwd: ".",  //"the current directory"
-				src: ["**", "!Gruntfile.js", "!package.json", "!public/libs"], //the target file and ignored files
-				dest: "dist" // the destine directory
+				expand: true,
+				cws:".",
+				src:["**", "!Grunfile.js", "!package.json", "!public/libs"],
+				dest: "dist"
 			}
-		},
-		clean: {
-			dist: {
-				src: "dist"
-			}
+
 		},
 		nodemon:{
-			dev: {
+			dev:{
 				script: "server.js",
-				options:{ 
-					ignore: ["node_modules/**/**", "public/**/**/**"]
+				options:{
+					ignore:["dist/","public/**/**", "node_modules/**/**"],
 				}
 			}
 		},
 		browserSync:{
-			dev:{
-				bsFiles:{
-				  src:"public/**/**",
-				},	
-				options:{
-					proxy: "http://localhost:3000",
-				}
-			}
+		 bsFiles:{
+			 src:"public/**/**"
+		 },
+		 options:{
+			 proxy: "localhost:3000"
+		 }
 		}
 	});
 
+	grunt.loadNpmTasks("grunt-contrib-copy");
+	grunt.loadNpmTasks("grunt-nodemon");
+	grunt.loadNpmTasks("grunt-browser-sync");
 
-  var tasks = ["grunt-contrib-copy", "grunt-contrib-clean", "grunt-nodemon","grunt-browser-sync"];
-	tasks.forEach(function(task){
-		grunt.loadNpmTasks(task);
-	});
-
-	grunt.registerTask("dist", ["clean", "copy"]);
 	grunt.registerTask("sync", ["browserSync"]);
-	grunt.registerTask("server", ["nodemon"]);
+	grunt.registerTask("default", ["copy"]);
+	grunt.registerTask("serve", ["nodemon"]);
 
 }

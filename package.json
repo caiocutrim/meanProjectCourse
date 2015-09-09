@@ -33,18 +33,22 @@
     "moment": "^2.10.6",
     "mongo-sanitize": "^1.0.0",
     "mongodb": "^2.0.42",
-    "mongoose": "^4.1.3",
+    "mongoose": "^4.1.6",
     "mongoose-unique-validator": "^0.4.1",
     "morgan": "^1.6.1",
     "socket.io": "^1.3.6"
   },
   "repository": "http://bitbucket.org/caio1989/rschool",
   "devDependencies": {
-    "browser-sync": "^2.9.1",
     "grunt": "^0.4.5",
     "grunt-browser-sync": "^2.1.3",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.8.1",
-    "grunt-nodemon": "^0.4.0"
+    "grunt-nodemon": "^0.4.0",
+    "jasmine-core": "^2.3.2",
+    "karma": "^0.13.9",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18"
   }
 }
