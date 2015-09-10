@@ -2,7 +2,7 @@ module.exports = function(grunt){
 	grunt.initConfig({
 		watch:{
 			files:["test/spec-backend/**"],
-			tasks:["mochaTest"]
+			tasks:["mochaTest", "karma"]
 		},
 		copy:{
 			project:{
@@ -21,9 +21,15 @@ module.exports = function(grunt){
 				}
 			}
 		},
+		//testing tasks
 		mochaTest:{
 			test:{
 				src:"test/spec-backend/**.js"
+			}
+		},
+		karma:{
+			unit:{
+				configFile: "./config/karma.config.js"
 			}
 		},
 		browserSync:{
@@ -41,6 +47,7 @@ module.exports = function(grunt){
 		"grunt-nodemon", 
 		"grunt-browser-sync", 
 		"grunt-mocha-test",
+		"grunt-karma",
 		"grunt-contrib-watch"
 	];
 
@@ -50,6 +57,6 @@ module.exports = function(grunt){
 
 	grunt.registerTask("sync", ["browserSync"]);
 	grunt.registerTask("serve", ["nodemon"]);
-	grunt.registerTask("tests", ["mochaTest", "watch"]);
+	grunt.registerTask("tests", ["mochaTest",	"watch"]);
 
 }
