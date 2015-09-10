@@ -1,9 +1,11 @@
+"use strict";
 var mongoose = require("mongoose");
 var uniqueValidator = require("mongoose-unique-validator");
 var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(){
-	var userSchema = mongoose.Schema({
+	var Schema = mongoose.Schema;
+	var userSchema = new Schema({
 		username: {
 			type: String,
 			required: true,
