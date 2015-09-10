@@ -9,7 +9,6 @@ module.exports = function(app){
 	controller.ensureAuthorized = function (req, res, next){
 
 			var token = req.headers["authorization"] || req.body; 
-			console.log("token em base64 ->" + token)
 			if(token){
 				  try {
 					  var decoded = jwt.decode(token, secret);
