@@ -15,7 +15,7 @@ module.exports = function(app){
 				res.status(201).json(data);
 			}, function(err){
 				res.status(404).json(err);
-			});
+			}).done();
 
 		}
 		else{
@@ -49,7 +49,7 @@ module.exports = function(app){
 		});
 	};
 
-	controller.removeUser = function(req, res){
+	controller.removeUser = function(req, res, done){
 		User.remove(sanitize({"_id":req.body._id})).exec()
 		.then(function(){
 			 res.end();
@@ -57,6 +57,8 @@ module.exports = function(app){
 			console.log(err);
 			res.status(500).json(err);
 		});
+
+		done();
 	};
 
 	return controller;
