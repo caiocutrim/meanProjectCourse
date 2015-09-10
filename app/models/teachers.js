@@ -1,9 +1,11 @@
+"use strict";
 var mongoose = require("mongoose");
 module.exports = function(){
-	var teachersSchema = mongoose.Schema({
+	var Schema = mongoose.Schema;
+	var teachersSchema = new Schema({
 		name: {
 			type: String,
-			required: true,
+			required: true
 		},
 		address:{
 			street:{
@@ -24,5 +26,5 @@ module.exports = function(){
 		}
 	});
 
-	return mongoose.model('Teachers', teachersSchema);
+	return mongoose.model('Teachers',  teachersSchema);
 }
