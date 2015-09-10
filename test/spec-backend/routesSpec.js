@@ -1,5 +1,5 @@
 "use strict";
-var app = require("../../config/express")(app)
+  var app = require("../../config/express")(app)
 	, should = require("should")
 	, request = require("supertest")(app);
 
@@ -31,5 +31,23 @@ describe("Routing", function(){
 				done();
 		});
 	});
+
+	describe("POST /login", function(){
+
+		it("should return status 200, with a token", function(done){
+			var data = {
+				"username":"caiocutrim",
+				"password":"02589874rock"
+			};
+			request.post("/login", data)
+			.end(function(res, err){
+				if(err) throw err;
+				res.status.should.eql(200);
+			});
+
+			done();
+		});
+
+});
 
 });
