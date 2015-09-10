@@ -1,5 +1,9 @@
 module.exports = function(grunt){
 	grunt.initConfig({
+		watch:{
+			files:["test/spec-backend/**"],
+			tasks:["mochaTest"]
+		},
 		copy:{
 			project:{
 				expand: true,
@@ -13,8 +17,13 @@ module.exports = function(grunt){
 			dev:{
 				script: "server.js",
 				options:{
-					ignore:["dist/","public/**/**", "node_modules/**/**"],
+					ignore:["test/**/**","dist/","public/**/**", "node_modules/**/**"],
 				}
+			}
+		},
+		mochaTest:{
+			test:{
+				src:"test/spec-backend/**.js"
 			}
 		},
 		browserSync:{
@@ -27,12 +36,20 @@ module.exports = function(grunt){
 		}
 	});
 
-	grunt.loadNpmTasks("grunt-contrib-copy");
-	grunt.loadNpmTasks("grunt-nodemon");
-	grunt.loadNpmTasks("grunt-browser-sync");
+  tasks = [
+		"grunt-contrib-copy", 
+		"grunt-nodemon", 
+		"grunt-browser-sync", 
+		"grunt-mocha-test",
+		"grunt-contrib-watch"
+	];
+
+	tasks.forEach(function(task){
+		grunt.loadNpmTasks(task);
+	});
 
 	grunt.registerTask("sync", ["browserSync"]);
-	grunt.registerTask("default", ["copy"]);
 	grunt.registerTask("serve", ["nodemon"]);
+	grunt.registerTask("tests", ["mochaTest", "watch"]);
 
 }
