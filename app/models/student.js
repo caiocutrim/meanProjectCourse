@@ -1,6 +1,8 @@
+"use strict";
 var mongoose = require("mongoose");
 module.exports = function(){
-	var studentSchema = mongoose.Schema({  
+	var Schema = mongoose.Schema;
+	var studentSchema = new Schema({  
 		name: {  
 			 type: String,
 			 required: true
