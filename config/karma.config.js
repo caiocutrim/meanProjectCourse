@@ -21,11 +21,10 @@ module.exports = function(config) {
 			"../public/libs/angular-bootstrap/ui-bootstrap.js",
 			"../public/libs/ngstorage/ngStorage.js",
 			"../public/libs/angular-mocks/angular-mocks.js",
-			"../public/components-js/components.js",
-			"../public/index.js",
-			"../public/src/controllers/**/*.js",
-			"../public/src/routes/**/*.js",
-			"../public/src/services/services.js",
+			"../public/src/modules/*.js",
+			"../public/src/services/*.js",
+			"../public/src/controllers/*.js",
+			"../public/src/routes/*.js",
 			"../test/spec/**/*Spec.js"
     ],
 

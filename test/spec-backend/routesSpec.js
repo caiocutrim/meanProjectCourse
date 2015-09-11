@@ -3,10 +3,9 @@
 	, should = require("should")
 	, request = require("supertest")(app);
 
-
 describe("Routing", function(){
 	
-	describe("the students route", function(){
+	describe("GET /students", function(){
 		it("should return status 401 when makes get at /students without authentication", function(done){
 				request.get("/students")
 				.expect(401)
@@ -20,7 +19,7 @@ describe("Routing", function(){
 		
 	});
 
-	describe("the users route", function(){
+	describe("GET /users", function(){
 		it("should return status 200 when makes get at /users", function(done){
 				request.get("/users")
 				.expect(200)
@@ -35,19 +34,19 @@ describe("Routing", function(){
 	describe("POST /login", function(){
 
 		it("should return status 200, with a token", function(done){
-			var data = {
-				"username":"caiocutrim",
-				"password":"02589874rock"
-			};
-			request.post("/login", data)
-			.end(function(res, err){
-				if(err) throw err;
-				res.status.should.eql(200);
-			});
+				var data = {
+					"username":"caiocutrim",
+					"password":"02589874rock"
+				};
+				request.post("/login", data)
+				.end(function(res, err){
+					if(err) throw err;
+					res.status.should.eql(200);
+				});
 
-			done();
+				done();
 		});
 
-});
+  });
 
 });
