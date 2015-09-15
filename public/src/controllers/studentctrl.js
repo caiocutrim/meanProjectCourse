@@ -1,25 +1,34 @@
 (function(){
+	"use strict";
+
 	angular.module("rschool.students")
-	.controller("studentCtrl", ["Student", "$scope","$routeParams", function(Student, $scope, $routeParams){
+	  .controller("StudentCtrl", StudentCtrl);	
+
+  StudentCtrl.$inject = ["Student","$routeParams", "$scope"];
+	function StudentCtrl(Student,  $routeParams, $scope){
+		var vm = this;
+
+		vm.save = save;
+		vm.remove = remove;
 
 		if($routeParams.studentId){
 			 Student.get({id:$routeParams.studentId}
 			 , function(data){
-					 $scope.student = data;
+					 vm.student = data;
 			 }
 			 , function(err){
-					 $scope.message = {
+					 vm.message = {
 						 text: "Não foi possível obter o contato"
 					 }
 			 });
 		}
 		else{
-			$scope.student = new Student();
+			vm.student = new Student();
 		}
 
 		function getAllStudents (){
 			Student.query(function(data){ 
-				$scope.students = data;
+				vm.students = data;
 			}, function(err){
 				console.log(err);
 			});
@@ -27,29 +36,29 @@
 		
 		getAllStudents();
 
-		$scope.save = function(){
+		function save(){
 			// from ng-model
-			$scope.student.$save()
+			vm.student.$save()
 			 .then(function(){
-					$scope.message = { text: "Salvo com sucesso" };
-					$scope.student = new Student();
+					vm.message = { text: "Salvo com sucesso" };
+					vm.student = new Student();
 			})
 			 .catch(function(err){
 					console.log(err);
-					$scope.mesage = { text: "Ocorreu um erro, desculpe"}
+					vm.mesage = { text: "Ocorreu um erro, desculpe"}
 			});
 
 		};
 
-		$scope.remove = function(student){
+		function remove(student){
 			Student.delete({id: student._id }
 			, getAllStudents
 			, function(err){
-				$scope.message  = {
+				vm.message  = {
 					text: "Não foi possível remover o contato"
 				}
 				console.log(err);
 			});
 		}
-	}]);
+	};
 })();

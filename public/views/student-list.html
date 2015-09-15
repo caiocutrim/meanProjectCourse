@@ -25,7 +25,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="student in students | filter:search">
+			<tr ng-repeat="student in studentCtrl.students | filter:search">
 				<td>{{student.name}}</td>
 				<td>{{student.surname}}</td>
 				<td>{{student.address.street}}</td>

@@ -1,14 +1,13 @@
-describe("studentCtrl", function(){ 
+describe("StudentCtrl", function(){ 
 	var $scope
 	  , $http
   ;
 
-
 	beforeEach(function(){
 		module("rschool");
-		inject(function($injector, _$httpBackend_){
+		inject(function($httpBackend, $injector){
 			$scope = $injector.get("$rootScope").$new();
-			$http = _$httpBackend_;
+			$http = $httpBackend;
 			$http.when("GET", "/students/1")
 			.respond({_id:"1"});
 			$http.when("GET", "/students")
@@ -18,22 +17,22 @@ describe("studentCtrl", function(){
 
 		it("should save when the post was made or list when get if the _id to be empty"
 		, inject(function($controller){
-				$controller("studentCtrl",{
+				var vm = $controller("StudentCtrl", {
 					"$scope": $scope
 				});
-
 				$http.flush();
-				expect($scope.student._id).toBeUndefined();
+
+				expect(vm.student._id).toBeUndefined();
 	}));
 
 		it("should update a data student when an _id passed as parameter"
 		, inject(function($controller){
-				$controller("studentCtrl", {
-					"$routeParams": { studentId: 1},
+	      var vm = $controller("StudentCtrl", {
 					"$scope": $scope,
+					"$routeParams": { studentId: 1 }
 				});
 
 				$http.flush();
-				expect($scope.student._id).toBeDefined();
+				expect(vm.student._id).toBeDefined();
 	}));
 });

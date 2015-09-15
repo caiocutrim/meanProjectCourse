@@ -6,35 +6,43 @@
 
 		$routeProvider
 		.when("/",{
-			 controller: "studentCtrl",
+			 controller: "StudentCtrl",
+			 controllerAs: "studentCtrl",
 			 templateUrl: "../../views/student-list.html"
 		})
 		.when("/student-create", {
-			controller: "studentCtrl",
+			controller: "StudentCtrl",
+			controllerAs: "studentCtrl",
 			templateUrl: "../../views/student-create.html"
 		})
 		.when("/student/:studentId", {
-			controller: "studentCtrl",
+			controller: "StudentCtrl",
+			controllerAs: "studentCtrl",
 			templateUrl: "../../views/student-create.html"
 		})
 		.when("/login", {
-			controller: "userCtrl",
+			controller: "UserCtrl",
+			controllerAs: "userCtrl",
 			templateUrl: "../../views/login.html"
 		})
 		.when("/logout", {
-			controller: "userCtrl",
+			controller: "UserCtrl",
+			controllerAs: "userCtrl",
 			templateUrl: "../../views/login.html"
 		})
 		.when("/class", {
-			controller: "classCtrl",
+			controller: "LessonCtrl",
+			controller: "lessonCtrl",
 			templateUrl: "../../views/class-create.html"
 		})
 		.when("/user-create", {
-			controller: "userCtrl",
+			controller: "UserCtrl",
+			controllerAs: "userCtrl",
 			templateUrl: "../../views/user-create.html"
 		})
 		.when("/student-profile/:studentId", {
 			controller: "studentCtrl",
+			controllerAs: "studentCtrl",
 			templateUrl: "../../views/student-profile.html"
 		});
 
